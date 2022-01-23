@@ -426,7 +426,10 @@ class FSMFieldMixin(object):
                     attr._django_fsm.field in [self, self.name]
                     or (
                         isinstance(attr._django_fsm.field, Field)
-                        and issubclass(self.model, attr._django_fsm.field.model)
+                        # alter by qinzhanming
+                        # django 3.2.10 升级问题处理
+                        # and issubclass(self.model, attr._django_fsm.field.model)
+                        and (issubclass(attr._django_fsm.field.model, self.model) or issubclass(self.model, attr._django_fsm.field.model))
                         and attr._django_fsm.field.name == self.name
                         and attr._django_fsm.field.creation_counter == self.creation_counter
                     )
