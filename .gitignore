@@ -1,0 +1,6 @@
+*.pyc
+dist/
+build/
+django_fsm.egg-info/
+.tox/
+.idea/
